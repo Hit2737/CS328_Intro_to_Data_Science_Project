@@ -3,7 +3,7 @@ from numpy import zeros, sqrt, dot, diag
 from numpy.linalg import svd, LinAlgError
 from scipy.linalg import svd as scipy_svd
 
-from matrixSketcherBase import MatrixSketcherBase
+# from matrixSketcherBase import MatrixSketcherBase
 
 class FrequentDirections:
     def __init__(self , d, ell):

@@ -29,9 +29,9 @@ class SyntheticDataMaker:
         # setting the singular values  
         eta = self.signal_singular_value_decay_factor
         if self.signal_singular_value_decay_type == 'exp':
-            self.signal_singular_values = [exp(-10*eta*i/self.signal_dimension) for i in xrange(self.signal_dimension)] 
+            self.signal_singular_values = [exp(-10*eta*i/self.signal_dimension) for i in range(self.signal_dimension)] 
         elif self.signal_singular_value_decay_type == 'lin':
-            self.signal_singular_values = [max(1.0 - eta*float(i)/self.signal_dimension,0.0) for i in xrange(self.signal_dimension)]
+            self.signal_singular_values = [max(1.0 - eta*float(i)/self.signal_dimension,0.0) for i in range(self.signal_dimension)]
         else:
             self.signal_singular_values = ones(self.signal_dimension)
         # done initializing 
@@ -49,7 +49,7 @@ class SyntheticDataMaker:
 
     def makeMatrix(self, n):
         matrix = zeros((n, self.dimension))
-        for i in xrange(n):
+        for i in range(n):
             matrix[i,:] = self.makeRow()
         return matrix
             
@@ -89,7 +89,7 @@ if __name__=='__main__':
     sdn = SyntheticDataMaker()
     sdn.initBeforeMake(args.d, args.k, args.snr)
     
-    for i in xrange(args.n):
+    for i in range(args.n):
         row  = sdn.makeRow()
         sdn.writeToFile(row)
 
