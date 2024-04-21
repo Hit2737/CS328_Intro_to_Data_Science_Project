@@ -34,7 +34,7 @@ for i in range(n):
 sketch = sketcher.get()
 
 A = np.array(A)
-# print(A)
+print(A.shape)
 
 # Here is where you do something with the sketch.
 # The sketch is an ell by d matrix 
@@ -43,6 +43,7 @@ A = np.array(A)
 
 # print(sketch.shape)
 approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+print(approxCovarianceMatrix.shape)
 # print(approxCovarianceMatrix)
 # print(approxCovarianceMatrix.shape)
 
@@ -58,83 +59,215 @@ result = np.dot(A.T, A)
 # print(result)
 # print(result.shape)
 
-frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+# UNCOMMMENT FROM HERE
 
-arr = []
-print("Frobenius norm between matrices AT.A and BT.B on performing simple sketching:", frobenius_norm)
+# frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+# print(frobenius_norm)
 
-arr.append(frobenius_norm)
 
-for j in [2,3,4,5,6,7,8,9,10]:
+# arr = []
+# print("Frobenius norm between matrices AT.A and BT.B on performing simple sketching:", frobenius_norm)
 
-    sketcher = FrequentDirections(d,ell)
-    for i in range(0,n,j):
-        sketcher.append(A[i])
-    sketch = sketcher.get()
+# arr.append(frobenius_norm)
 
-    approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+# for j in [2,3,4,5,6,7,8,9,10]:
 
-    frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
-    arr.append(frobenius_norm)
+#     sketcher = FrequentDirections(d,ell)
+#     for i in range(0,n,j):
+#         sketcher.append(A[i])
+#     sketch = sketcher.get()
 
-plt.plot(np.arange(1,11),arr)
-plt.show()
+#     approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+
+#     frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+#     arr.append(frobenius_norm)
+
+# plt.plot(np.arange(1,11),arr)
+# plt.show()
 
 # print(sorted(np.random.choice(np.arange(1, 501), size=400, replace=False)))
 
-temp=0
-tarr = []
-for j in range(100):
-    sketcher = FrequentDirections(d,ell)
-    for i in sorted(np.random.choice(np.arange(0,500), size=400, replace=False)):
-        sketcher.append(A[i])
-    sketch = sketcher.get()
-    approxCovarianceMatrix = dot(sketch.transpose(),sketch)
-    frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
-    temp+=frobenius_norm
-    tarr.append(frobenius_norm)
+# temp=0
+# tarr = []
+# for j in range(100):
+#     sketcher = FrequentDirections(d,ell)
+#     for i in sorted(np.random.choice(np.arange(0,500), size=400, replace=False)):
+#         sketcher.append(A[i])
+#     sketch = sketcher.get()
+#     approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+#     frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+#     temp+=frobenius_norm
+#     tarr.append(frobenius_norm)
 
-temp/=100
-print("Average F norm on samling 400 rows",temp)
-plt.plot(np.arange(1,101),tarr)
-plt.show()
+# temp/=100
+# print("Average F norm on samling 400 rows",temp)
+# plt.plot(np.arange(1,101),tarr)
+# plt.show()
 
-temp=0
-tarr = []
-for j in range(100):
-    sketcher = FrequentDirections(d,ell)
-    for i in sorted(np.random.choice(np.arange(0,500), size=450, replace=False)):
-        sketcher.append(A[i])
-    sketch = sketcher.get()
-    approxCovarianceMatrix = dot(sketch.transpose(),sketch)
-    frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
-    temp+=frobenius_norm
-    tarr.append(frobenius_norm)
+# temp=0
+# tarr = []
+# for j in range(100):
+#     sketcher = FrequentDirections(d,ell)
+#     for i in sorted(np.random.choice(np.arange(0,500), size=450, replace=False)):
+#         sketcher.append(A[i])
+#     sketch = sketcher.get()
+#     approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+#     frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+#     temp+=frobenius_norm
+#     tarr.append(frobenius_norm)
 
-temp/=100
-print("Average F norm on sampling 450 rows:",temp)
-plt.plot(np.arange(1,101),tarr)
-plt.show()
+# temp/=100
+# print("Average F norm on sampling 450 rows:",temp)
+# plt.plot(np.arange(1,101),tarr)
+# plt.show()
 
-temp=0
-tarr = []
-for j in range(100):
-    sketcher = FrequentDirections(d,ell)
-    for i in np.random.permutation(500):
-        sketcher.append(A[i])
-    sketch = sketcher.get()
-    approxCovarianceMatrix = dot(sketch.transpose(),sketch)
-    frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
-    temp+=frobenius_norm
-    tarr.append(frobenius_norm)
+# temp=0
+# tarr = []
+# for j in range(100):
+#     sketcher = FrequentDirections(d,ell)
+#     for i in np.random.permutation(500):
+#         sketcher.append(A[i])
+#     sketch = sketcher.get()
+#     approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+#     frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+#     temp+=frobenius_norm
+#     tarr.append(frobenius_norm)
 
-temp/=100
-print("Average F norm on taking a random permutation of matrix A:",temp)
-plt.plot(np.arange(1,101),tarr)
-plt.show()
+# temp/=100
+# print("Average F norm on taking a random permutation of matrix A:",temp)
+# plt.plot(np.arange(1,101),tarr)
+# plt.show()
 
+# Till now:
 
 # The paper's future work mentions that rows might be available in any order
 # We have tried to sample a few rows randomly and show the result
 # We also tried to uniformly sample a few rows and showed the result
 # We have permuted the rows and shown the result
+
+# Parallelization
+
+f1 = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+
+arr = []
+arr2 = []
+print("Frobenius norm between matrices AT.A and BT.B on performing simple sketching:", f1)
+
+# arr.append(frobenius_norm)
+
+# for j in range(100):
+#     A = []
+#     for i in range(n):
+#         row = dataMaker.makeRow()
+#         A.append(row)
+
+#     sketcher = FrequentDirections(d,2*ell)
+#     for i in range(0,n//2):
+#         sketcher.append(A[i])
+#     m1 = sketcher.get()
+#     # m1 = dot(sketch.transpose(),sketch)
+
+#     # print(m1.shape)
+
+
+#     sketcher = FrequentDirections(d,2*ell)
+#     for i in range(n//2,n):
+#         sketcher.append(A[i])
+#     m2 = sketcher.get()
+#     # m2 = dot(sketch.transpose(),sketch)
+#     # print(m2.shape)
+
+#     m = np.vstack((m1, m2))
+
+#     sketcher = FrequentDirections(d,ell)
+#     for i in range(0,m.shape[0]):
+#         sketcher.append(m[i])
+#     sketch = sketcher.get()
+#     M = dot(sketch.transpose(),sketch)
+#     # print(M.shape)
+
+
+
+
+#     frobenius_norm = np.linalg.norm(result - M, ord='fro')
+#     # print(frobenius_norm)
+#     arr.append(frobenius_norm)
+
+#     sketcher = FrequentDirections(d,ell)
+#     for i in range(0,n):
+#         sketcher.append(A[i])
+#     sketch = sketcher.get()
+
+#     approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+
+#     frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+#     arr2.append(frobenius_norm)
+
+# plt.plot(np.arange(1,101),arr,label="Parallelized")
+# plt.plot(np.arange(1,101),arr2,label="Non-Parallelized")
+# plt.xlabel("Experiments")
+# plt.ylabel("F-norm")
+# plt.legend()
+# plt.show()
+
+for j in range(100):
+    A = []
+    for i in range(n):
+        row = dataMaker.makeRow()
+        A.append(row)
+
+    sketcher = FrequentDirections(d,3*ell)
+    for i in range(0,n//3):
+        sketcher.append(A[i])
+    m1 = sketcher.get()
+    # m1 = dot(sketch.transpose(),sketch)
+
+    print(m1.shape)
+
+
+    sketcher = FrequentDirections(d,3*ell)
+    for i in range(n//3,2*n//3):
+        sketcher.append(A[i])
+    m2 = sketcher.get()
+    # m2 = dot(sketch.transpose(),sketch)
+    # print(m2.shape)
+
+    sketcher = FrequentDirections(d,3*ell)
+    for i in range(n//3,2*n//3):
+        sketcher.append(A[i])
+    m3 = sketcher.get()
+    # m2 = dot(sketch.transpose(),sketch)
+    # print(m2.shape)
+
+    m = np.vstack((m1, m2, m3))
+
+    sketcher = FrequentDirections(d,ell)
+    for i in range(0,m.shape[0]):
+        sketcher.append(m[i])
+    sketch = sketcher.get()
+    M = dot(sketch.transpose(),sketch)
+    # print(M.shape)
+
+
+
+
+    frobenius_norm = np.linalg.norm(result - M, ord='fro')
+    # print(frobenius_norm)
+    arr.append(frobenius_norm)
+
+    sketcher = FrequentDirections(d,ell)
+    for i in range(0,n):
+        sketcher.append(A[i])
+    sketch = sketcher.get()
+
+    approxCovarianceMatrix = dot(sketch.transpose(),sketch)
+
+    frobenius_norm = np.linalg.norm(result - approxCovarianceMatrix, ord='fro')
+    arr2.append(frobenius_norm)
+
+plt.plot(np.arange(1,101),arr,label="Parallelized")
+plt.plot(np.arange(1,101),arr2,label="Non-Parallelized")
+plt.xlabel("Experiments")
+plt.ylabel("F-norm")
+plt.legend()
+plt.show()
