@@ -6,6 +6,7 @@ CS-328 Data Science Project
 Sampling and Sketching Methods for Novel Matrix Factorization
 </h1>
 
+<h2>Some Important Terms you may need to know:</h2>
 <h3>
 What is Matrix Factorization?
 </h3>
